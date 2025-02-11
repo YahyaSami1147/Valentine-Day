@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Romantic Preloader Styling */
+        .preloader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4); /* Romantic pink gradient */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            color: #fff;
+            font-weight: bold;
+            z-index: 1000;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .message-container {
+            display: none;
+            animation: fadeInOut 3s ease-in-out;
+        }
+
+        .preloader img {
+            width: 120px;
+            height: 120px;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Special Preloader with Messages -->
+    <div class="preloader" id="preloader">
+        <div class="message-container" id="message1">
+            <p>Hey my love, 💖</p>
+            <img src="heart1.gif" alt="Heart Animation">
+        </div>
+        <div class="message-container" id="message2">
+            <p>You are the most special person in my life! 💕</p>
+            <img src="love2.gif" alt="Love Animation">
+        </div>
+        <div class="message-container" id="message3">
+            <p>Every moment with you is magical! ✨</p>
+            <img src="magic.gif" alt="Magic Animation">
+        </div>
+        <div class="message-container" id="message4">
+            <p>Now get ready for a surprise! 😘</p>
+            <img src="cute.gif" alt="Cute Animation">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" id="mainContent">
+        <h1>Happy Valentine's Day, My Love! 💖</h1>
+        <p>You are the most amazing person in my life. Every moment with you feels like a dream come true.</p>
+        
+        <!-- Cartoon Animation GIF -->
+        <div class="animation">
+            <img src="AK.gif" alt="Cute Valentine Animation">
+        </div>
+
+        <!-- Heartfelt Message -->
+        <div class="message">
+            <p>From the moment I met you, my life has been filled with joy, love, and laughter. You are my everything, and I can't imagine a day without you.</p>
+            <p>Today, I want to ask you something very special...</p>
+        </div>
+
+        <!-- Valentine Proposal -->
+        <button id="proposalButton">Click Here, My Love ❤️</button>
+        <div id="proposal"></div>
+
+        <!-- Romantic Background Music -->
+        <div class="music-control">
+            <audio id="romanticMusic" loop>
+                <source src="Song.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button id="musicButton">🎶 Play Music</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+
+    <script>
+        document.getElementById('musicButton').addEventListener('click', function() {
+            let music = document.getElementById('romanticMusic');
+            if (music.paused) {
+                music.play();
+                this.textContent = "⏸ Pause Music";
+            } else {
+                music.pause();
+                this.textContent = "🎶 Play Music";
+            }
+        });
+
+        // Auto-play music (muted at first for user-friendly experience)
+        window.onload = function() {
+            let music = document.getElementById('romanticMusic');
+            music.volume = 0.5;
+
+            // Show each message one by one
+            let messages = ['message1', 'message2', 'message3', 'message4'];
+            let index = 0;
+
+            function showNextMessage() {
+                if (index > 0) {
+                    document.getElementById(messages[index - 1]).style.display = 'none';
+                }
+                if (index < messages.length) {
+                    document.getElementById(messages[index]).style.display = 'block';
+                    setTimeout(showNextMessage, 3000); // Show each message for 3 seconds
+                    index++;
+                } else {
+                    // Hide preloader and show main content
+                    setTimeout(() => {
+                        document.getElementById('preloader').classList.add('hidden');
+                        document.getElementById('mainContent').style.display = 'block';
+                    }, 2000);
+                }
+            }
+
+            showNextMessage(); // Start message sequence
+        };
+    </script>
+
+</body>
+</html>
