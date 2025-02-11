@@ -41,12 +41,52 @@ function handleNoClick() {
     proposalDiv.innerHTML = `
         <p>${randomMessage}</p>
         <button id="yesButton">Fine, Yes! 💖</button>
-        <button id="noButton">Noo... 😅</button>  <!-- No button appears again -->
+        <button id="noButton">Noo... 😅</button>
     `;
 
     document.getElementById('yesButton').addEventListener('click', function() {
         proposalDiv.innerHTML = '<p>Yay! You just made me the happiest person in the world! 🥰💖</p>';
     });
 
-    document.getElementById('noButton').addEventListener('click', handleNoClick); // No button keeps appearing!
+    document.getElementById('noButton').addEventListener('click', handleNoClick);
 }
+
+document.getElementById('musicButton').addEventListener('click', function() {
+    let music = document.getElementById('romanticMusic');
+    if (music.paused) {
+        music.play();
+        this.textContent = "⏸ Pause Music";
+    } else {
+        music.pause();
+        this.textContent = "🎶 Play Music";
+    }
+});
+
+// Auto-play music (muted at first for user-friendly experience)
+window.onload = function() {
+    let music = document.getElementById('romanticMusic');
+    music.volume = 0.5;
+
+    // Show each message one by one
+    let messages = ['message1', 'message2', 'message3', 'message4'];
+    let index = 0;
+
+    function showNextMessage() {
+        if (index > 0) {
+            document.getElementById(messages[index - 1]).style.display = 'none';
+        }
+        if (index < messages.length) {
+            document.getElementById(messages[index]).style.display = 'block';
+            setTimeout(showNextMessage, 3000); // Show each message for 3 seconds
+            index++;
+        } else {
+            // Hide preloader and show main content
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+                document.getElementById('mainContent').style.display = 'block';
+            }, 2000);
+        }
+    }
+
+    showNextMessage(); // Start message sequence
+};
