@@ -5,53 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine? 💖</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Romantic Preloader Styling */
-        .preloader {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4); /* Romantic pink gradient */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
-            font-size: 36px;
-            color: #fff;
-            font-weight: bold;
-            z-index: 1000;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .message-container {
-            display: none;
-            animation: fadeInOut 3s ease-in-out;
-        }
-
-        .preloader img {
-            width: 120px;
-            height: 120px;
-            margin-top: 10px;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        .container {
-            display: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -105,49 +58,5 @@
         </div>
     </div>
     <script src="script.js"></script>
-
-
-    <script>
-        document.getElementById('musicButton').addEventListener('click', function() {
-            let music = document.getElementById('romanticMusic');
-            if (music.paused) {
-                music.play();
-                this.textContent = "⏸ Pause Music";
-            } else {
-                music.pause();
-                this.textContent = "🎶 Play Music";
-            }
-        });
-
-        // Auto-play music (muted at first for user-friendly experience)
-        window.onload = function() {
-            let music = document.getElementById('romanticMusic');
-            music.volume = 0.5;
-
-            // Show each message one by one
-            let messages = ['message1', 'message2', 'message3', 'message4'];
-            let index = 0;
-
-            function showNextMessage() {
-                if (index > 0) {
-                    document.getElementById(messages[index - 1]).style.display = 'none';
-                }
-                if (index < messages.length) {
-                    document.getElementById(messages[index]).style.display = 'block';
-                    setTimeout(showNextMessage, 3000); // Show each message for 3 seconds
-                    index++;
-                } else {
-                    // Hide preloader and show main content
-                    setTimeout(() => {
-                        document.getElementById('preloader').classList.add('hidden');
-                        document.getElementById('mainContent').style.display = 'block';
-                    }, 2000);
-                }
-            }
-
-            showNextMessage(); // Start message sequence
-        };
-    </script>
-
 </body>
 </html>
