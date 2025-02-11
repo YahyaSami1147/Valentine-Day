@@ -1,11 +1,11 @@
+/* General Styles */
 body {
-    scroll-behavior: auto;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #ffebee;
     font-family: 'Arial', sans-serif;
     overflow: hidden;
@@ -14,34 +14,35 @@ body {
 .container {
     text-align: center;
     background-color: #fff;
-    padding: 40px;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    width: 90%;
+    max-width: 90%;
+    width: 100%;
+    margin: 20px;
 }
 
 h1 {
     color: #e91e63;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 2.5rem); /* Responsive font size */
     margin-bottom: 20px;
 }
 
 p {
     color: #555;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem); /* Responsive font size */
     margin-bottom: 20px;
 }
 
 .animation img {
-    width: 200px;
+    max-width: 100%;
     height: auto;
     margin-bottom: 20px;
 }
 
 .message {
     background-color: #fce4ec;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -50,8 +51,8 @@ button {
     background-color: #e91e63;
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 1rem;
+    padding: 10px 20px;
+    font-size: clamp(1rem, 3vw, 1.2rem); /* Responsive font size */
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -63,18 +64,14 @@ button:hover {
 
 #proposal {
     margin-top: 20px;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem); /* Responsive font size */
     color: #e91e63;
     animation: fadeIn 2s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Background Hearts Animation */
@@ -89,4 +86,74 @@ body::before {
     opacity: 0.3;
     z-index: -1;
     pointer-events: none;
+}
+
+/* Romantic Preloader Styling */
+.preloader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2rem, 6vw, 3rem); /* Responsive font size */
+    color: #fff;
+    font-weight: bold;
+    z-index: 1000;
+    transition: opacity 1s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.message-container {
+    display: none;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.preloader img {
+    width: clamp(80px, 20vw, 120px); /* Responsive image size */
+    height: auto;
+    margin-top: 10px;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.container {
+    display: none;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+
+    #proposal {
+        font-size: 1.5rem;
+    }
 }
