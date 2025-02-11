@@ -62,10 +62,13 @@ document.getElementById('musicButton').addEventListener('click', function() {
     }
 });
 
-// Auto-play music (muted at first for user-friendly experience)
+// Auto-play music when the page loads
 window.onload = function() {
     let music = document.getElementById('romanticMusic');
     music.volume = 0.5;
+    music.play().catch(error => {
+        console.log("Autoplay was blocked, user interaction needed:", error);
+    });
 
     // Show each message one by one
     let messages = ['message1', 'message2', 'message3', 'message4'];
