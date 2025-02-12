@@ -40,8 +40,32 @@ function handleNoClick() {
     const proposalDiv = document.getElementById('proposal');
     proposalDiv.innerHTML = `
         <p>${randomMessage}</p>
-        <button id="yesButton">Fine, Yes! 💖</button>
+        <button id="yesButton" style="font-size: ${16 + (2 * noClickCount)}px">Fine, Yes! 💖</button>
         <button id="noButton">Noo... 😅</button>
+    `;
+
+    document.getElementById('yesButton').addEventListener('click', function() {
+        proposalDiv.innerHTML = '<p>Yay! You just made me the happiest person in the world! 🥰💖</p>';
+    });
+
+    document.getElementById('noButton').addEventListener('click', handleNoClick);
+
+    // Increment the noClickCount to increase the size of the "Yes" button next time
+    noClickCount++;
+}
+
+let noClickCount = 0; // Initialize the counter
+
+document.getElementById('proposalButton').addEventListener('click', function() {
+    startProposal();
+});
+
+function startProposal() {
+    const proposalDiv = document.getElementById('proposal');
+    proposalDiv.innerHTML = `
+        <p>Will you be my Valentine, today and forever? 💖</p>
+        <button id="yesButton">Yes! 💖</button>
+        <button id="noButton">Nah ah ... 😅</button>
     `;
 
     document.getElementById('yesButton').addEventListener('click', function() {
